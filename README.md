@@ -1,5 +1,11 @@
 # React + TypeScript + Vite
 
+
+This small application is a simple note application where the user can create a note, delete the note and once the number of notes increase it will be displayed as pages.
+
+Notes app
+![Notes simple usage](./src/assets/notes.png)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
