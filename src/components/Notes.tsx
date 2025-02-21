@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import { useNotesContext } from "../hooks/useNotesContext";
-import { Note } from "./Note";
+import { NotesList } from "./NotesList";
 
 export interface NoteInterface {
     id: number
@@ -8,7 +8,7 @@ export interface NoteInterface {
 }
 
 export function Notes() {
-    const {notes, addItem, removeItem} = useNotesContext();
+    const {notes, addItem} = useNotesContext();
     const [note, setNote] = useState<string>("")
 
     const handleAddItem = useCallback(() => {
@@ -21,10 +21,6 @@ export function Notes() {
     const handleNoteChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setNote(e?.target?.value ?? '')
     }, [])
-    
-    const handleDeleteNote = useCallback((id: number) => {
-        removeItem(id)
-    }, [])
 
     return <div className="flex content-center flex-column">
         <h5>Create a new note</h5>
@@ -32,8 +28,6 @@ export function Notes() {
             <input value={note} onChange={handleNoteChange}/>
             <button disabled={!note.length} onClick={handleAddItem}>Create</button>
         </div>
-        <div className="flex flex-wrap">  
-            {notes.map((item: NoteInterface) => <Note key={item.id} note={item} onDelete={handleDeleteNote} />)}
-        </div>
+        <NotesList/>
     </div>
 }
